@@ -57,12 +57,12 @@ public class EditPanel extends JPanel {
 		
 		
 		ImageIcon img_black = new ImageIcon("src/images/black.jpg");
-		for (int y = 0; y< screenSize.height-10; y= y+ 10) {
-			for (int x = 0; x< screenSize.width-10; x = x+ 10) {
+		for (int y = 0; y< screenSize.height-20; y= y+ 20) {
+			for (int x = 0; x< screenSize.width-20; x = x+ 20) {
 				if (!(x > screenSize.width/2-130 && x < screenSize.width/2-100+230 && y >screenSize.height/2-30 && y <screenSize.height/2+100+70)) {
 					if (x >80 || y<screenSize.height-90) {
 						JLabel pixel = new JLabel();
-						pixel.setBounds(x, y, 10, 10);
+						pixel.setBounds(x, y, 20, 20);
 						pixel.addMouseListener(new MouseAdapter() {
 							public void mouseEntered(MouseEvent e) {
 								pixel.setIcon(img_black);

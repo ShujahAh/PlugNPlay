@@ -68,6 +68,9 @@ public class MenuPanel extends JPanel {
 	public void recreateBubbles() {
 		for (JLabel i: bubbles) {
 			i.setVisible(false);
+			this.remove(i);
+			this.validate();
+			this.repaint();
 		}
 		ImageIcon img_bubble = new ImageIcon("src/images/bubble.png");
 		ImageIcon img_pop = new ImageIcon("src/images/pop.png");
@@ -91,8 +94,12 @@ public class MenuPanel extends JPanel {
 			bubbles.add(bubble);
 		}
 		for(JLabel i: bubbles) {
+			
 			this.add(i);
 		}
+		this.validate();
+		this.repaint();
+		
 	}
 }
 

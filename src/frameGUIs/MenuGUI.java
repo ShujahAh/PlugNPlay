@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -33,6 +34,7 @@ public class MenuGUI {
 	private JPanel rootPanel;
 	private EditGUI editFrame;
 	private PlayGUI	playFrame;
+	
 	
 	final static String ABOUT = "Panel for About Page";
 	final static String EDIT = "Panel for Edit Page";
@@ -84,8 +86,21 @@ public class MenuGUI {
 				CardLayout tmp = (CardLayout)(rootPanel.getLayout());
 				tmp.show(rootPanel, PLAY);
 				JFileChooser chooser = new JFileChooser("src/gameFiles");
-		        chooser.showOpenDialog(null);
-		        playFrame = new PlayGUI( chooser.getSelectedFile());
+		        int option = chooser.showOpenDialog(null);
+		        while (option == JFileChooser.APPROVE_OPTION && !chooser.getSelectedFile().toString().contains(".txt")) {
+		        	JOptionPane.showMessageDialog(chooser, "Selected file was not a Game Text File");
+		        	option = chooser.showOpenDialog(null);
+		        }
+		        if (option == JFileChooser.APPROVE_OPTION) {
+			        try {
+						playFrame = new PlayGUI( chooser.getSelectedFile(), rootPanel);
+					} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+							| InvocationTargetException | NoSuchMethodException | SecurityException
+							| ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		        }
 			}
 			
 		});
@@ -142,17 +157,19 @@ public class MenuGUI {
 						JOptionPane.showMessageDialog(edit.create_field, "Game Name Is Not Applicable");
 					}
 					else {
+						
 						edit.create = false;
 						edit.edit_button.setVisible(true);
 						edit.create_field.setVisible(false);
-						File game = new File("src/gameFiles" + edit.create_field.getText());
+						File game = new File("src/gameFiles/" + edit.create_field.getText());
 						try {
-							BufferedWriter writer = new BufferedWriter(new FileWriter(game));
-							writer.close();
-						} catch (IOException e1) {
+							editFrame = new EditGUI(game, rootPanel);
+						} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+								| InvocationTargetException | NoSuchMethodException | SecurityException
+								| ClassNotFoundException | FileNotFoundException e1) {
+							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						editFrame = new EditGUI(game);
 					}
 					
 				}
@@ -171,17 +188,39 @@ public class MenuGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser chooser = new JFileChooser("src/gameFiles");
-		        chooser.showOpenDialog(null);
-		        editFrame = new EditGUI( chooser.getSelectedFile());
-		      
-		        
-				
+				int option = chooser.showOpenDialog(null);
+		        while (option == JFileChooser.APPROVE_OPTION && !chooser.getSelectedFile().toString().contains(".txt")) {
+		        	JOptionPane.showMessageDialog(chooser, "Selected file was not a Game Text File");
+		        	option = chooser.showOpenDialog(null);
+		        }
+		        if (option == JFileChooser.APPROVE_OPTION) {
+		        	try {
+						editFrame = new EditGUI( chooser.getSelectedFile(),rootPanel);
+					} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+							| InvocationTargetException | NoSuchMethodException | SecurityException
+							| ClassNotFoundException | FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		        }
+		       
 			}
 			
 		});
 		
 
 		play.back_button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				menu.recreateBubbles();
+				CardLayout tmp = (CardLayout)(rootPanel.getLayout());
+				tmp.show(rootPanel, MENU);
+			}
+			
+		});
+		
+		about.back_button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
