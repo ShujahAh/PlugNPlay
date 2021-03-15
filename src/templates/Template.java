@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public interface Template {
+	public String getID();
 	public String getText();
 	public ImageIcon getImage();
 	public JPanel getPanel();

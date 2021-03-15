@@ -5,8 +5,11 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -17,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import dataManipulation.FileRead;
+import dataManipulation.FileSave;
 import panels.CreationPanel;
 import panels.OptionPanel;
 import panels.PreviewPanel;
@@ -77,6 +81,26 @@ public class EditGUI {
 		frame.add(preview, BorderLayout.SOUTH);
 		frame.add(create, BorderLayout.EAST);
 		frame.add(template, BorderLayout.CENTER);
+		
+		preview.done.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				List<Template> data = preview.templates;
+				FileSave saving = new FileSave(gameFile);
+				try {
+					saving.SaveData(data);
+					
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				frame.dispose();
+				CardLayout tmp = (CardLayout)(rootPanel.getLayout());
+				tmp.show(rootPanel, MENU);
+			}
+			
+		});
 		
 		
 		

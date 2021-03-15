@@ -8,6 +8,8 @@ import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.BevelBorder;
 
 import frameGUIs.EditGUI;
 import templates.Template;
@@ -26,6 +29,7 @@ public class CreationPanel extends JPanel {
 	public JPanel current_template;
 	public JScrollPane edit_template;
 	public JButton add;
+	public JButton currentButton;
 	
 	private EditGUI frame;
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -34,6 +38,12 @@ public class CreationPanel extends JPanel {
 		this.frame = frame;
 		CreatePanel();
 		
+		/*addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				frame.preview.delete.setVisible(false);
+				frame.preview.change.setVisible(false);
+			}
+		});*/
 	}
 	
 
@@ -48,14 +58,18 @@ public class CreationPanel extends JPanel {
 		
 	}
 	
-	public void setPreview(Template template) {
+	public void setPreview(Template template, JButton button) {
 		
 		if (current_template != null) {
 			this.remove(current_template);
 			this.remove(edit_template);
 			current_template = null;
 			edit_template = null;
+			currentButton.setBorder(null);
 		}
+		
+		currentButton = button;
+		currentButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.cyan, Color.cyan));
 		
 		template.setSizetoPlay(false);
 		
@@ -74,7 +88,7 @@ public class CreationPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				PreviewPanel preview = frame.preview;
-				preview.addTempalte(template);
+				preview.addTemplate(template, false);
 				template.getRealEditPanel().remove(add);
 				reDraw();
 			}
