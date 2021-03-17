@@ -1,5 +1,6 @@
 package templates;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -7,13 +8,17 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -22,15 +27,21 @@ import panels.PreviewPanel;
 public class Test implements Template {
 
 	private final String ID = "T";
+	public JPanel rootPane;
 	public JPanel pane;
 	public JPanel paneimg;
 	public JPanel editpane;
 	public JScrollPane panelPane;
+	public JPanel wrong_panel;
+	public JPanel right_panel;
+	
 	public String correctAnswer;
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	//text that will appear on the preview
 	public JLabel text1_os;
 	public JLabel text2_os;
+	public JLabel wrong_os;
+	public JLabel right_os;
 	
 	//buttons that will appear on the preview
 	public JButton button1_os;
@@ -46,6 +57,8 @@ public class Test implements Template {
 	public JButton preview4;
 	public JButton preview5;
 	public JButton preview6;
+	public JButton preview7;
+	public JButton preview8;
 	
 	//labels to label each set of input options
 	public JLabel text1;
@@ -54,6 +67,8 @@ public class Test implements Template {
 	public JLabel button2;
 	public JLabel button3;
 	public JLabel button4;
+	public JLabel wrong;
+	public JLabel right;
 	
 	//panels that will hold font, size, color for each set of input options
 	public JPanel preview1_ops;
@@ -62,6 +77,8 @@ public class Test implements Template {
 	public JPanel preview4_ops;
 	public JPanel preview5_ops;
 	public JPanel preview6_ops;
+	public JPanel preview7_ops;
+	public JPanel preview8_ops;
 	
 	//text area for each set of input options
 	public JTextArea area1;
@@ -70,6 +87,8 @@ public class Test implements Template {
 	public JTextArea area4;
 	public JTextArea area5;
 	public JTextArea area6;
+	public JTextArea area7;
+	public JTextArea area8;
 	
 	//color options for each set of input options
 	public final String[] colors = {"White","Gray","Black","Red","Orange", "Yellow", "Green", "Blue"};
@@ -79,12 +98,16 @@ public class Test implements Template {
 	public JLabel color4;
 	public JLabel color5;
 	public JLabel color6;
+	public JLabel color7;
+	public JLabel color8;
 	public JComboBox color_op1;
 	public JComboBox color_op2;
 	public JComboBox color_op3;
 	public JComboBox color_op4;
 	public JComboBox color_op5;
 	public JComboBox color_op6;
+	public JComboBox color_op7;
+	public JComboBox color_op8;
 	
 	//font options for each set of input options
 	public final String[] fonts = {"Dialog","Helvetica","TimesR","Courier","Symbol"};
@@ -94,13 +117,22 @@ public class Test implements Template {
 	public JLabel font4;
 	public JLabel font5;
 	public JLabel font6;
+	public JLabel font7;
+	public JLabel font8;
 	public JComboBox font_op1;
 	public JComboBox font_op2;
 	public JComboBox font_op3;
 	public JComboBox font_op4;
 	public JComboBox font_op5;
 	public JComboBox font_op6;
+	public JComboBox font_op7;
+	public JComboBox font_op8;
 	
+	public ButtonGroup correct_op;
+	public JRadioButton correct1;
+	public JRadioButton correct2;
+	public JRadioButton correct3;
+	public JRadioButton correct4;
 	
 	
 	public Test(List<String> data){
@@ -116,28 +148,41 @@ public class Test implements Template {
 		pane.setBackground(Color.GRAY);
 		pane.setLayout(new FlowLayout());
 		
+		wrong_panel = new JPanel();
+		wrong_panel.setBackground(Color.blue);
+		wrong_panel.setLayout(new FlowLayout());
+		
+		right_panel = new JPanel();
+		right_panel.setBackground(Color.green);
+		right_panel.setLayout(new FlowLayout());
+		
 		editpane = new JPanel();
-		editpane.setBackground(Color.magenta);
+		editpane.setBackground(Color.LIGHT_GRAY);
 		editpane.setLayout(new FlowLayout());
-		editpane.setPreferredSize(new Dimension(screenSize.width/3-20, 700));
+		editpane.setPreferredSize(new Dimension(screenSize.width/3-20, 900));
 		//editpane.setLocation(0, 0);
 		
 		add = new JButton("Add to Lesson");
 		add.setPreferredSize(new Dimension(screenSize.width/3-30, 20));
 		
-		Dimension dem_labels =new Dimension(screenSize.width/3-20, 20);
+		Dimension dem_labels_buttons =new Dimension(screenSize.width/3-170, 20);
+		Dimension dem_labels_texts =new Dimension(screenSize.width/3-30, 20);
 		text1 = new JLabel("Text #1");
-		text1.setPreferredSize(dem_labels);
+		text1.setPreferredSize(dem_labels_texts);
 		text2 = new JLabel("Text #2");
-		text2.setPreferredSize(dem_labels);
+		text2.setPreferredSize(dem_labels_texts);
 		button1 = new JLabel("Button #1");
-		button1.setPreferredSize(dem_labels);
+		button1.setPreferredSize(dem_labels_buttons);
 		button2 = new JLabel("Button #2");
-		button2.setPreferredSize(dem_labels);
+		button2.setPreferredSize(dem_labels_buttons);
 		button3 = new JLabel("Button #3");
-		button3.setPreferredSize(dem_labels);
+		button3.setPreferredSize(dem_labels_buttons);
 		button4 = new JLabel("Button #4");
-		button4.setPreferredSize(dem_labels);
+		button4.setPreferredSize(dem_labels_buttons);
+		right = new JLabel("Right Choice Text");
+		right.setPreferredSize(dem_labels_texts);
+		wrong = new JLabel("Wrong Choice Text");
+		wrong.setPreferredSize(dem_labels_texts);
 		
 		Dimension dem_textarea = new Dimension(screenSize.width/3-170, 80);
 		area1 = new JTextArea();
@@ -158,6 +203,12 @@ public class Test implements Template {
 		area6 = new JTextArea();
 		area6.setPreferredSize(dem_textarea);
 		area6.setLineWrap(true);
+		area7 = new JTextArea();
+		area7.setPreferredSize(dem_textarea);
+		area7.setLineWrap(true);
+		area8 = new JTextArea();
+		area8.setPreferredSize(dem_textarea);
+		area8.setLineWrap(true);
 		
 		Dimension dem_optionpanel = new Dimension(dem_textarea.width/4+45, 80);
 		Color background_color = Color.lightGray;
@@ -179,6 +230,13 @@ public class Test implements Template {
 		preview6_ops = new JPanel();
 		preview6_ops.setPreferredSize(dem_optionpanel);
 		preview6_ops.setBackground(background_color);
+		preview7_ops = new JPanel();
+		preview7_ops.setPreferredSize(dem_optionpanel);
+		preview7_ops.setBackground(background_color);
+		preview8_ops = new JPanel();
+		preview8_ops.setPreferredSize(dem_optionpanel);
+		preview8_ops.setBackground(background_color);
+		
 		
 		Dimension dem_colorlabel = new Dimension(dem_optionpanel.width/2-5, 22);
 		color1 = new JLabel("Color:");
@@ -235,6 +293,24 @@ public class Test implements Template {
 		font6.setPreferredSize(dem_colorlabel);
 		font_op6 = new JComboBox(fonts);
 		font_op6.setPreferredSize(dem_colorlabel);
+		color7 = new JLabel("Color:");
+		color7.setPreferredSize(dem_colorlabel);
+		color_op7 = new JComboBox(colors);
+		color_op7.setPreferredSize(dem_colorlabel);
+		color_op7.setSelectedItem("Black");
+		font7 = new JLabel("Font:");
+		font7.setPreferredSize(dem_colorlabel);
+		font_op7 = new JComboBox(fonts);
+		font_op7.setPreferredSize(dem_colorlabel);
+		color8 = new JLabel("Color:");
+		color8.setPreferredSize(dem_colorlabel);
+		color_op8 = new JComboBox(colors);
+		color_op8.setPreferredSize(dem_colorlabel);
+		color_op8.setSelectedItem("Black");
+		font8 = new JLabel("Font:");
+		font8.setPreferredSize(dem_colorlabel);
+		font_op8 = new JComboBox(fonts);
+		font_op8.setPreferredSize(dem_colorlabel);
 		
 		
 		button1_os = new JButton("option 1");
@@ -245,6 +321,25 @@ public class Test implements Template {
 		text1_os = new JLabel("text 1");
 		text2_os = new JLabel("text 2");
 		
+		wrong_os = new JLabel("Wrong");
+		right_os = new JLabel("Right");
+		
+		String lab = "Correct Answer";
+		Dimension dem_correct =new Dimension(dem_textarea.width/4+45, 20);
+		correct1 = new JRadioButton(lab);
+		correct1.setPreferredSize(dem_correct);
+		correct1.setBackground(Color.LIGHT_GRAY);
+		correct2 = new JRadioButton(lab); 
+		correct2.setPreferredSize(dem_correct);
+		correct2.setBackground(Color.LIGHT_GRAY);
+		correct3 = new JRadioButton(lab); 
+		correct3.setPreferredSize(dem_correct);
+		correct3.setBackground(Color.LIGHT_GRAY);
+		correct4 = new JRadioButton(lab);
+		correct4.setPreferredSize(dem_correct);
+		correct4.setBackground(Color.LIGHT_GRAY);
+		
+		
 		Dimension dem_optionbutton = new Dimension(dem_optionpanel.width-10, 15);
 		preview1 = new JButton("Preview");
 		preview1.setPreferredSize(dem_optionbutton);
@@ -254,17 +349,27 @@ public class Test implements Template {
 		setPreviewListener(preview2, area2, font_op2, color_op2, text2_os);
 		preview3 = new JButton("Preview");
 		preview3.setPreferredSize(dem_optionbutton);
-		setPreviewListener(preview3, area3, font_op3, color_op3, button1_os);
+		setPreviewListener(preview3, area3, font_op3, color_op3, button1_os, correct1);
 		preview4 = new JButton("Preview");
 		preview4.setPreferredSize(dem_optionbutton);
-		setPreviewListener(preview4, area4, font_op4, color_op4, button2_os);
+		setPreviewListener(preview4, area4, font_op4, color_op4, button2_os, correct2);
 		preview5 = new JButton("Preview");
 		preview5.setPreferredSize(dem_optionbutton);
-		setPreviewListener(preview5, area5, font_op5, color_op5, button3_os);
+		setPreviewListener(preview5, area5, font_op5, color_op5, button3_os, correct3);
 		preview6 = new JButton("Preview");
 		preview6.setPreferredSize(dem_optionbutton);
-		setPreviewListener(preview6, area6, font_op6, color_op6, button4_os);
+		setPreviewListener(preview6, area6, font_op6, color_op6, button4_os, correct4);
+		preview7 = new JButton("Preview");
+		preview7.setPreferredSize(dem_optionbutton);
+		setPreviewListener(preview7, area7, font_op7, color_op7, right_os);
+		preview8 = new JButton("Preview");
+		preview8.setPreferredSize(dem_optionbutton);
+		setPreviewListener(preview8, area8, font_op8, color_op8, wrong_os);
 
+		//wrong and right adds
+		wrong_panel.add(wrong_os);
+		right_panel.add(right_os);
+		
 		//paneimg adds
 		paneimg = new JPanel();
 		paneimg.setLayout(null);
@@ -300,6 +405,7 @@ public class Test implements Template {
 		preview2_ops.add(font_op2);
 		
 		editpane.add(button1);
+		editpane.add(correct1);
 		editpane.add(area3);
 		editpane.add(preview3_ops);
 		preview3_ops.add(preview3);
@@ -309,6 +415,7 @@ public class Test implements Template {
 		preview3_ops.add(font_op3);
 		
 		editpane.add(button2);
+		editpane.add(correct2);
 		editpane.add(area4);
 		editpane.add(preview4_ops);
 		preview4_ops.add(preview4);
@@ -318,6 +425,7 @@ public class Test implements Template {
 		preview4_ops.add(font_op4);
 		
 		editpane.add(button3);
+		editpane.add(correct3);
 		editpane.add(area5);
 		editpane.add(preview5_ops);
 		preview5_ops.add(preview5);
@@ -327,6 +435,7 @@ public class Test implements Template {
 		preview5_ops.add(font_op5);
 		
 		editpane.add(button4);
+		editpane.add(correct4);
 		editpane.add(area6);
 		editpane.add(preview6_ops);
 		preview6_ops.add(preview6);
@@ -335,6 +444,24 @@ public class Test implements Template {
 		preview6_ops.add(font6);
 		preview6_ops.add(font_op6);
 		
+		editpane.add(right);
+		editpane.add(area7);
+		editpane.add(preview7_ops);
+		preview7_ops.add(preview7);
+		preview7_ops.add(color7);
+		preview7_ops.add(color_op7);
+		preview7_ops.add(font7);
+		preview7_ops.add(font_op7);
+		
+		editpane.add(wrong);
+		editpane.add(area8);
+		editpane.add(preview8_ops);
+		preview8_ops.add(preview8);
+		preview8_ops.add(color8);
+		preview8_ops.add(color_op8);
+		preview8_ops.add(font8);
+		preview8_ops.add(font_op8);
+		
 		panelPane = new JScrollPane(editpane);
 		panelPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		panelPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -342,6 +469,26 @@ public class Test implements Template {
 		//editpanel = new JPanel();
 		//editpanel.add(panelPane);
 		
+		rootPane = new JPanel(new CardLayout());
+		rootPane.add(pane, "main");
+		rootPane.add(wrong_panel, "wrong");
+		rootPane.add(right_panel, "right");
+		CardLayout tmp = (CardLayout)(rootPane.getLayout());
+		tmp.show(rootPane, "main");
+		
+		wrong_panel.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				CardLayout tmp = (CardLayout)(rootPane.getLayout());
+				tmp.show(rootPane, "main");
+			}
+		});
+		
+		right_panel.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				CardLayout tmp = (CardLayout)(rootPane.getLayout());
+				tmp.show(rootPane, "main");
+			}
+		});
 		
 	}
 	
@@ -440,7 +587,7 @@ public class Test implements Template {
 		
 	}
 
-	private void setPreviewListener(JButton preview, JTextArea area, JComboBox font_op, JComboBox color_op, JButton button_os) {
+	private void setPreviewListener(JButton preview, JTextArea area, JComboBox font_op, JComboBox color_op, JButton button_os, JRadioButton correct) {
 		
 		preview.addActionListener(new ActionListener() {
 
@@ -499,6 +646,32 @@ public class Test implements Template {
 				
 				button_os.setForeground(co);
 				button_os.setFont(fo);
+				
+				if(correct.isSelected()) {
+					if (button_os.getActionListeners().length > 0) {
+						button_os.removeActionListener(button_os.getActionListeners()[0]);
+					}
+					button_os.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							CardLayout tmp = (CardLayout)(rootPane.getLayout());
+							tmp.show(rootPane, "right");
+						}
+					});
+				}else {				
+					if (button_os.getActionListeners().length > 0) {
+						button_os.removeActionListener(button_os.getActionListeners()[0]);
+					}
+					button_os.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							CardLayout tmp = (CardLayout)(rootPane.getLayout());
+							tmp.show(rootPane, "wrong");
+						}
+					});
+				}
 			}
 			
 		});
@@ -530,7 +703,7 @@ public class Test implements Template {
 
 	@Override
 	public JPanel getPanel() {
-		return pane;
+		return rootPane;
 	}
 
 	@Override
