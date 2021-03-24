@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -31,6 +32,7 @@ public class PreviewPanel extends JPanel {
 	public EditGUI frame;
 	public JPanel options;
 	public JPanel preview;
+	public JPanel title;
 	public JScrollPane preview_scroll;
 	public JButton currentButton;
 	public Template currentTemplate;
@@ -38,6 +40,7 @@ public class PreviewPanel extends JPanel {
 	public JButton delete;
 	public JButton change;
 	public JLabel change_pos;
+	public JLabel title_l;
 
 	public List<Integer> indexes=new ArrayList<Integer>();
 	public JComboBox change_op;
@@ -75,10 +78,15 @@ public class PreviewPanel extends JPanel {
 		
 		
 		options = new JPanel();
-		options.setBackground(Color.cyan);
+		options.setBackground(Color.DARK_GRAY);
 		options.setLayout(new FlowLayout());
 		options.setPreferredSize(new Dimension(200, 200));
 		options.setLocation(this.getWidth()-200, 0);
+		
+		title = new JPanel();
+		title.setBackground(Color.LIGHT_GRAY);
+		title_l = new JLabel("Preview");
+		title_l.setFont(new Font("TimesRoman", Font.BOLD, 20));
 		
 		done = new JButton("Save & Exit");
 		delete = new JButton("Delete");
@@ -87,9 +95,9 @@ public class PreviewPanel extends JPanel {
 		change_op = new JComboBox();
 		
 		
-		done.setPreferredSize(new Dimension(150,50));
-		delete.setPreferredSize(new Dimension(150,50));
-		change.setPreferredSize(new Dimension(150,50));
+		done.setPreferredSize(new Dimension(150,40));
+		delete.setPreferredSize(new Dimension(150,40));
+		change.setPreferredSize(new Dimension(150,40));
 		change_pos.setPreferredSize(new Dimension(70, 20));
 		change_op.setPreferredSize(new Dimension(75, 20));
 		
@@ -158,7 +166,9 @@ public class PreviewPanel extends JPanel {
 		options.add(change_op);
 		options.add(delete);
 		
+		title.add(title_l);
 		
+		this.add(title, BorderLayout.NORTH);
 		this.add(preview_scroll, BorderLayout.CENTER);
 		this.add(options, BorderLayout.EAST);
 	}
@@ -179,7 +189,7 @@ public class PreviewPanel extends JPanel {
 		tmp.setHorizontalTextPosition(JButton.CENTER);
 		tmp.setVerticalTextPosition(JButton.CENTER);
 		tmp.setMargin(new Insets(0,0,0,0));
-		tmp.setPreferredSize(new Dimension(170,170));
+		tmp.setPreferredSize(new Dimension(140,140));
 		tmp.addActionListener(new ActionListener() {
 
 			@Override

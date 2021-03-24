@@ -20,6 +20,7 @@ public class MenuPanel extends JPanel {
 	public JButton play_button;
 	public JButton edit_button;
 	public JButton about_button;
+	public JButton quit_button;
 	public JLabel title_label;
 	public List<JLabel> bubbles=new ArrayList<JLabel>(); 
 
@@ -36,9 +37,11 @@ public class MenuPanel extends JPanel {
 		play_button = new JButton("Play");
 		edit_button = new JButton("Edit/Create");
 		about_button = new JButton("About");
+		quit_button = new JButton("Quit");
 		play_button.setBounds(screenSize.width/2-100, screenSize.height/2, 200, 40);
 		edit_button.setBounds(screenSize.width/2-100, screenSize.height/2+50, 200, 40);
 		about_button.setBounds(screenSize.width/2-100, screenSize.height/2+100, 200, 40);
+		quit_button.setBounds(screenSize.width/2-100, screenSize.height/2+150, 200, 40);
 		recreateBubbles();
 		
 		title_label = new JLabel();
@@ -62,6 +65,7 @@ public class MenuPanel extends JPanel {
 		this.add(play_button);
 		this.add(edit_button);
 		this.add(about_button);
+		this.add(quit_button);
 		
 	}
 	

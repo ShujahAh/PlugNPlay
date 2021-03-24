@@ -10,12 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -35,7 +37,8 @@ public class Test implements Template {
 	public JPanel wrong_panel;
 	public JPanel right_panel;
 	
-	public String correctAnswer;
+	
+	private String correctAnswer; 
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	//text that will appear on the preview
 	public JLabel text1_os;
@@ -338,6 +341,11 @@ public class Test implements Template {
 		correct4 = new JRadioButton(lab);
 		correct4.setPreferredSize(dem_correct);
 		correct4.setBackground(Color.LIGHT_GRAY);
+		correct_op = new ButtonGroup();
+		correct_op.add(correct1);
+		correct_op.add(correct2);
+		correct_op.add(correct3);
+		correct_op.add(correct4);
 		
 		
 		Dimension dem_optionbutton = new Dimension(dem_optionpanel.width-10, 15);
@@ -349,16 +357,16 @@ public class Test implements Template {
 		setPreviewListener(preview2, area2, font_op2, color_op2, text2_os);
 		preview3 = new JButton("Preview");
 		preview3.setPreferredSize(dem_optionbutton);
-		setPreviewListener(preview3, area3, font_op3, color_op3, button1_os, correct1);
+		setPreviewListener(preview3, area3, font_op3, color_op3, button1_os, correct1, button1);
 		preview4 = new JButton("Preview");
 		preview4.setPreferredSize(dem_optionbutton);
-		setPreviewListener(preview4, area4, font_op4, color_op4, button2_os, correct2);
+		setPreviewListener(preview4, area4, font_op4, color_op4, button2_os, correct2, button2);
 		preview5 = new JButton("Preview");
 		preview5.setPreferredSize(dem_optionbutton);
-		setPreviewListener(preview5, area5, font_op5, color_op5, button3_os, correct3);
+		setPreviewListener(preview5, area5, font_op5, color_op5, button3_os, correct3, button3);
 		preview6 = new JButton("Preview");
 		preview6.setPreferredSize(dem_optionbutton);
-		setPreviewListener(preview6, area6, font_op6, color_op6, button4_os, correct4);
+		setPreviewListener(preview6, area6, font_op6, color_op6, button4_os, correct4, button4);
 		preview7 = new JButton("Preview");
 		preview7.setPreferredSize(dem_optionbutton);
 		setPreviewListener(preview7, area7, font_op7, color_op7, right_os);
@@ -483,12 +491,7 @@ public class Test implements Template {
 			}
 		});
 		
-		right_panel.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				CardLayout tmp = (CardLayout)(rootPane.getLayout());
-				tmp.show(rootPane, "main");
-			}
-		});
+		
 		
 	}
 	
@@ -504,21 +507,43 @@ public class Test implements Template {
 		String[] txt4 = data.get(3).split("<end>");
 		String[] txt5 = data.get(4).split("<end>");
 		String[] txt6 = data.get(5).split("<end>");
-		correctAnswer = data.get(6);
+		String[] txt7 = data.get(6).split("<end>");
+		String[] txt8 = data.get(7).split("<end>");
+		correctAnswer = data.get(8);
 		
-		loadText(txt1, area1, font_op1, color_op1, preview1);
-		loadText(txt2, area2, font_op2, color_op2, preview2);
-		loadText(txt3, area3, font_op3, color_op3, preview3);
-		loadText(txt4, area4, font_op4, color_op4, preview4);
-		loadText(txt5, area5, font_op5, color_op5, preview5);
-		loadText(txt6, area6, font_op6, color_op6, preview6);
+		loadText(txt1, area1, font_op1, color_op1, preview1, null, false);
+		loadText(txt2, area2, font_op2, color_op2, preview2, null, false);
+		loadText(txt3, area3, font_op3, color_op3, preview3, null, false);
+		loadText(txt4, area4, font_op4, color_op4, preview4, null, false);
+		loadText(txt5, area5, font_op5, color_op5, preview5, null, false);
+		loadText(txt6, area6, font_op6, color_op6, preview6, null, false);
+		loadText(txt7, area7, font_op7, color_op7, preview7, null, false);
+		loadText(txt8, area8, font_op8, color_op8, preview8, null, false);
 		
+		switch (correctAnswer) {
+			case  "Button #1":
+				loadText(txt3, area3, font_op3, color_op3, preview3, correct1, true);
+				break;
+			case  "Button #2":
+				loadText(txt4, area4, font_op4, color_op4, preview4, correct2, true);
+				break;
+			case  "Button #3":
+				loadText(txt5, area5, font_op5, color_op5, preview5, correct3, true);
+				break;
+			case  "Button #4":
+				loadText(txt6, area6, font_op6, color_op6, preview6, correct4, true);
+				break;		
+		}
+			
 	}
 	
-	private void loadText(String[] data, JTextArea area, JComboBox font_op, JComboBox color_op, JButton preview) {
+	private void loadText(String[] data, JTextArea area, JComboBox font_op, JComboBox color_op, JButton preview, JRadioButton correct, Boolean right) {
 		area.setText(data[0]);
 		font_op.setSelectedItem(data[1]);
 		color_op.setSelectedItem(data[2]);
+		if (correct != null & right) {
+			correct.setSelected(true);
+		}
 		preview.doClick();
 	}
 	
@@ -587,7 +612,7 @@ public class Test implements Template {
 		
 	}
 
-	private void setPreviewListener(JButton preview, JTextArea area, JComboBox font_op, JComboBox color_op, JButton button_os, JRadioButton correct) {
+	private void setPreviewListener(JButton preview, JTextArea area, JComboBox font_op, JComboBox color_op, JButton button_os, JRadioButton correct, JLabel this_text) {
 		
 		preview.addActionListener(new ActionListener() {
 
@@ -648,6 +673,7 @@ public class Test implements Template {
 				button_os.setFont(fo);
 				
 				if(correct.isSelected()) {
+					correctAnswer = this_text.getText();
 					if (button_os.getActionListeners().length > 0) {
 						button_os.removeActionListener(button_os.getActionListeners()[0]);
 					}
@@ -687,10 +713,13 @@ public class Test implements Template {
 		String text4_data = "<textsub>" + button2_os.getText() + "<end>" + font_op4.getSelectedItem().toString() + "<end>" + color_op4.getSelectedItem().toString() + "<textsub>"; 
 		String text5_data = "<textsub>" + button3_os.getText() + "<end>" + font_op5.getSelectedItem().toString() + "<end>" + color_op5.getSelectedItem().toString() + "<textsub>"; 
 		String text6_data = "<textsub>" + button4_os.getText() + "<end>" + font_op6.getSelectedItem().toString() + "<end>" + color_op6.getSelectedItem().toString() + "<textsub>"; 
-		String correctanswer_data = "unkown";
+		String text7_data = "<textsub>" + right_os.getText() + "<end>" + font_op7.getSelectedItem().toString() + "<end>" + color_op7.getSelectedItem().toString() + "<textsub>"; 
+		String text8_data = "<textsub>" + wrong_os.getText() + "<end>" + font_op8.getSelectedItem().toString() + "<end>" + color_op8.getSelectedItem().toString() + "<textsub>"; 
+		String correctanswer_data = correctAnswer;
 		
 		String data = nametemplate_data + "\n" + "<text>" + "\n" + text1_data + "\n" + text2_data + "\n" + text3_data 
-					+ "\n" + text4_data + "\n" + text5_data + "\n" + text6_data + "\n" + "<text>" + "\n" + correctanswer_data;
+					+ "\n" + text4_data + "\n" + text5_data + "\n" + text6_data + "\n" + text7_data + "\n" + text8_data + "\n" 
+					+ "<text>" + "\n"  + correctanswer_data;
 		
 		return data;
 	}
@@ -721,7 +750,14 @@ public class Test implements Template {
 	public void setSizetoPlay(boolean yes) {
 		// TODO Auto-generated method stub
 		if (yes) {
-			
+			paneimg.setPreferredSize(new Dimension(screenSize.width*3/4-20, screenSize.height/3+50));
+			Dimension buttons = new Dimension(screenSize.width/3, screenSize.height/11);
+			text1_os.setBounds(20, 0, (screenSize.width/3-10)/2-3, screenSize.height/10-50);
+			text2_os.setBounds(20, 40, (screenSize.width/3-10)/2-3, screenSize.height/10-50);
+			button1_os.setPreferredSize(buttons);
+			button2_os.setPreferredSize(buttons);
+			button3_os.setPreferredSize(buttons);
+			button4_os.setPreferredSize(buttons);
 		}else {
 			paneimg.setPreferredSize(new Dimension(screenSize.width/3-10, screenSize.height/3-75));
 			Dimension buttons = new Dimension((screenSize.width/3-10)/2-3, screenSize.height/10-50);
@@ -731,6 +767,13 @@ public class Test implements Template {
 			button2_os.setPreferredSize(buttons);
 			button3_os.setPreferredSize(buttons);
 			button4_os.setPreferredSize(buttons);
+			
+			right_panel.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					CardLayout tmp = (CardLayout)(rootPane.getLayout());
+					tmp.show(rootPane, "main");
+				}
+			});
 		}
 	}
 
@@ -750,6 +793,12 @@ public class Test implements Template {
 	public String getID() {
 		// TODO Auto-generated method stub
 		return ID;
+	}
+
+	@Override
+	public JComponent getComponentToAdvance() {
+		// TODO Auto-generated method stub
+		return right_panel;
 	}
 
 }

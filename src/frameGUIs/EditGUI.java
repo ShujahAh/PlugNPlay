@@ -2,11 +2,14 @@ package frameGUIs;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -32,6 +35,9 @@ public class EditGUI {
 	private JFrame frame;
 	private JPanel rootPanel;
 	private File gameFile;
+	private JPanel editpanel;
+	public JPanel editMain;
+	public JPanel helpMain;
 	public CreationPanel create;
 	public OptionPanel options;
 	public PreviewPanel preview;
@@ -71,16 +77,46 @@ public class EditGUI {
 		ImageIcon img = new ImageIcon("src/images/logo.png");
 		frame.setIconImage(img.getImage());
 		
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setUndecorated(true);
+		frame.setVisible(true);
+		
+		editpanel = new JPanel(new CardLayout());
+		
+		editMain = new JPanel(new BorderLayout());
+		helpMain = new JPanel(new BorderLayout());
+		
+		editpanel.add(editMain, "Main");
+		editpanel.add(helpMain, "Help");
+		
 		create = new CreationPanel(this);
 		options = new OptionPanel();
 		preview = new PreviewPanel(this);
 		template = new TemplatePanel(this);
 		
+		options.help.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CardLayout tmp = (CardLayout)(editpanel.getLayout());
+				tmp.show(editpanel, "Help");
+			}
+			
+		});
 		
-		frame.add(options, BorderLayout.NORTH);
-		frame.add(preview, BorderLayout.SOUTH);
-		frame.add(create, BorderLayout.EAST);
-		frame.add(template, BorderLayout.CENTER);
+		helpMain.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				CardLayout tmp = (CardLayout)(editpanel.getLayout());
+				tmp.show(editpanel, "Main");
+			}
+
+		});
+		
+		
+		editMain.add(options, BorderLayout.NORTH);
+		editMain.add(preview, BorderLayout.SOUTH);
+		editMain.add(create, BorderLayout.EAST);
+		editMain.add(template, BorderLayout.CENTER);
 		
 		preview.done.addActionListener(new ActionListener() {
 
@@ -102,7 +138,7 @@ public class EditGUI {
 			
 		});
 		
-		
+		frame.add(editpanel);
 		
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

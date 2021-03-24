@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -22,11 +23,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import dataManipulation.FileRead;
+import dataManipulation.FileSave;
 import panels.AboutPanel;
 import panels.EditPanel;
 import panels.InSessionPanel;
 import panels.MenuPanel;
 import panels.PlayPanel;
+import templates.Template;
 
 public class MenuGUI {
 
@@ -55,6 +58,10 @@ public class MenuGUI {
 		//frame.setLayout(null);
 		ImageIcon img = new ImageIcon("src/images/logo.png");
 		frame.setIconImage(img.getImage());
+		
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setUndecorated(true);
+		frame.setVisible(true);
 		
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -227,6 +234,15 @@ public class MenuGUI {
 				menu.recreateBubbles();
 				CardLayout tmp = (CardLayout)(rootPanel.getLayout());
 				tmp.show(rootPanel, MENU);
+			}
+			
+		});
+		
+		menu.quit_button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
 			}
 			
 		});

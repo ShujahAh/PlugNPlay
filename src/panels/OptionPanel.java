@@ -39,6 +39,7 @@ public class OptionPanel extends JPanel {
 		right.setPreferredSize(new Dimension(screenSize.width/3, screenSize.height/25));
 		
 		help = new JButton("Help");
+		help.setPreferredSize(new Dimension(screenSize.width/3-10, screenSize.height/25-10));
 		sort = new JLabel("Sort Templates By:");
 		options1 = new JComboBox();
 		options2 = new JComboBox();

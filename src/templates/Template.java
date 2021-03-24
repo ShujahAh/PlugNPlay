@@ -2,6 +2,7 @@ package templates;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -15,4 +16,5 @@ public interface Template {
 	public void setSizetoPlay(boolean yes);
 	public JButton getAddButton();
 	public JPanel getRealEditPanel();
+	public JComponent getComponentToAdvance();
 }

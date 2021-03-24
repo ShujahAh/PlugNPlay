@@ -2,6 +2,7 @@ package templates;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -56,5 +57,10 @@ public class StartingTemplate extends JPanel implements Template {
 	public String getID() {
 		// TODO Auto-generated method stub
 		return ID;
+	}
+	@Override
+	public JComponent getComponentToAdvance() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
