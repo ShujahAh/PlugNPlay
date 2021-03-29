@@ -1,0 +1,43 @@
+PopTart
+<section>
+<template>
+Test
+<text>
+<textsub>First one<end>Dialog<end>Black<textsub>
+<textsub>text 2<end>Dialog<end>Black<textsub>
+<textsub><end>Dialog<end>Black<textsub>
+<textsub>option 2<end>Dialog<end>Black<textsub>
+<textsub>option 3<end>Dialog<end>Black<textsub>
+<textsub>option 4<end>Dialog<end>Black<textsub>
+<textsub>finished fisrt one<end>Dialog<end>Black<textsub>
+<textsub>Wrong<end>Dialog<end>Black<textsub>
+<text>
+Button #1
+<template>
+Test
+<text>
+<textsub>second one<end>Dialog<end>Black<textsub>
+<textsub>text 2<end>Dialog<end>Black<textsub>
+<textsub><end>Dialog<end>Black<textsub>
+<textsub>option 2<end>Dialog<end>Black<textsub>
+<textsub>option 3<end>Dialog<end>Black<textsub>
+<textsub>option 4<end>Dialog<end>Black<textsub>
+<textsub>finished second one<end>Dialog<end>Black<textsub>
+<textsub>Wrong<end>Dialog<end>Black<textsub>
+<text>
+Button #1
+<template>
+Test
+<text>
+<textsub>Third one<end>Dialog<end>Black<textsub>
+<textsub>text 2<end>Dialog<end>Black<textsub>
+<textsub><end>Dialog<end>Black<textsub>
+<textsub>option 2<end>Dialog<end>Black<textsub>
+<textsub>option 3<end>Dialog<end>Black<textsub>
+<textsub>option 4<end>Dialog<end>Black<textsub>
+<textsub>Finished third one<end>Dialog<end>Black<textsub>
+<textsub>Wrong<end>Dialog<end>Black<textsub>
+<text>
+Button #1
+<section>
+finished
