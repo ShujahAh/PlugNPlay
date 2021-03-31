@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import dataManipulation.FileRead;
@@ -87,14 +89,19 @@ public class PlayGUI {
 		leftPanel = new JPanel();
 		leftPanel.setPreferredSize(new Dimension(screenSize.width/7, 0 ));
 		
-		exit_button = new JButton("Exit");
+		ImageIcon image_exit = new ImageIcon(new ImageIcon("src/images/exit.png").getImage().getScaledInstance( screenSize.height/6+40, screenSize.height/6+40, Image.SCALE_DEFAULT));
+		exit_button = new JButton(image_exit);
+		exit_button.setMargin(new Insets(0,0,0,0));
+		exit_button.setPreferredSize(new Dimension( screenSize.height/7, screenSize.height/7));
 		exit_button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				CardLayout tmp = (CardLayout)(rootPanel.getLayout());
-				tmp.show(rootPanel, MENU);
+				if (JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?") == JOptionPane.YES_OPTION) {
+					frame.dispose();
+					CardLayout tmp = (CardLayout)(rootPanel.getLayout());
+					tmp.show(rootPanel, MENU);
+				}
 			}
 			
 		});

@@ -20,6 +20,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import dataManipulation.FileRead;
@@ -136,6 +137,27 @@ public class EditGUI {
 				tmp.show(rootPanel, MENU);
 			}
 			
+		});
+		
+		options.exit.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				options.exit_l.setVisible(true);
+				options.help.setPreferredSize(new Dimension(screenSize.width/3-screenSize.width/17-5, screenSize.height/25));
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				options.exit_l.setVisible(false);
+				options.help.setPreferredSize(new Dimension(screenSize.width/3-screenSize.width/17 + screenSize.width/30-10, screenSize.height/25));
+			}
+			
+			public void mouseClicked(MouseEvent e) {
+				if (JOptionPane.showConfirmDialog(null, "Are you sure you want to exit without saving?") == JOptionPane.YES_OPTION) {
+					frame.dispose();
+					CardLayout tmp = (CardLayout)(rootPanel.getLayout());
+					tmp.show(rootPanel, MENU);
+				}
+				
+			}
 		});
 		
 		frame.add(editpanel);
