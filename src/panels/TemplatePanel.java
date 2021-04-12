@@ -24,6 +24,12 @@ import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
 import frameGUIs.EditGUI;
+import templates.Scenario1;
+import templates.Scenario3;
+import templates.Scenario6;
+import templates.Scenario7;
+import templates.Scenario8;
+import templates.Scenario9;
 import templates.Template;
 import templates.Test;
 
@@ -214,7 +220,13 @@ public class TemplatePanel extends JPanel {
 	}
 	
 	private void initializeTemplates() {
-		templates.add(new Test(null));
+		//templates.add(new Test(null));
+		templates.add(new Scenario1(null));
+		templates.add(new Scenario3(null));
+		templates.add(new Scenario6(null));
+		templates.add(new Scenario7(null));
+		templates.add(new Scenario8(null));
+		templates.add(new Scenario9(null));
 	}
 	
 	
