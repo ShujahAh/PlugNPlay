@@ -26,7 +26,7 @@ public class FileSave {
 		
 		BufferedWriter writer = new BufferedWriter(new FileWriter(GameFile));
 		//writer.write(data.get(0).getText());
-		writer.write("PopTart");
+		writer.write(GameFile.getName().substring(0, GameFile.getName().length()-4));
 		writer.newLine();
 		writer.write("<section>");
 		writer.newLine();

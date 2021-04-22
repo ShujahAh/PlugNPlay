@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -20,6 +21,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -43,6 +45,7 @@ public class EditGUI {
 	public OptionPanel options;
 	public PreviewPanel preview;
 	public TemplatePanel template;
+	public JLabel background;
 	
 	
 	final static String ABOUT = "Panel for About Page";
@@ -87,6 +90,11 @@ public class EditGUI {
 		editMain = new JPanel(new BorderLayout());
 		helpMain = new JPanel(new BorderLayout());
 		
+		ImageIcon image_title = new ImageIcon(new ImageIcon("src/images/HelpGuide.png").getImage().getScaledInstance( screenSize.width, screenSize.height, Image.SCALE_DEFAULT));
+		background = new JLabel(image_title);
+		background.setBounds(0, 0, screenSize.width, screenSize.height);
+		helpMain.add(background);
+		
 		editpanel.add(editMain, "Main");
 		editpanel.add(helpMain, "Help");
 		
@@ -105,7 +113,7 @@ public class EditGUI {
 			
 		});
 		
-		helpMain.addMouseListener(new MouseAdapter() {
+		background.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				CardLayout tmp = (CardLayout)(editpanel.getLayout());
 				tmp.show(editpanel, "Main");

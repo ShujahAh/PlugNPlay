@@ -168,7 +168,7 @@ public class MenuGUI {
 						edit.create = false;
 						edit.edit_button.setVisible(true);
 						edit.create_field.setVisible(false);
-						File game = new File("src/gameFiles/" + edit.create_field.getText());
+						File game = new File("src/gameFiles/" + edit.create_field.getText()+".txt");
 						try {
 							editFrame = new EditGUI(game, rootPanel);
 						} catch (InstantiationException | IllegalAccessException | IllegalArgumentException

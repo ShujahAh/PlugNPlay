@@ -112,8 +112,8 @@ public class EditPanel extends JPanel {
 		create_field.setBounds(screenSize.width/2-(screenSize.width/10),screenSize.height/2+(screenSize.height/15)+10, screenSize.width/5, screenSize.height/18);
 		create_field.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
 		create_field.setVisible(false);
+		create_field.setDocument(new JTextFieldLimit(45));
 		create_field.setText("Type Your Game Name Here And Click Create");
-		create_field.setDocument(new JTextFieldLimit(40));
 		create_field.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (!ready_to_input) {

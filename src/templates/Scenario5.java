@@ -27,7 +27,7 @@ import javax.swing.JTextArea;
 
 import panels.PreviewPanel;
 
-public class Scenario1 implements Template {
+public class Scenario5 implements Template {
 
 	private final String ID = "T";
 	public JPanel rootPane;
@@ -45,10 +45,11 @@ public class Scenario1 implements Template {
 	public JTextArea text1_os;
 	public JTextArea text2_os;
 	public JTextArea text3_os;
+	public JTextArea text4_os;
+	public JTextArea text5_os;
+
 	public JTextArea wrong_os;
 	public JTextArea right_os;
-	public JLabel wrong_img;
-	public JLabel right_img;
 	
 	//buttons that will appear on the preview
 	public JButton button1_os;
@@ -61,6 +62,8 @@ public class Scenario1 implements Template {
 	public JButton preview1;
 	public JButton preview2;
 	public JButton preview21;
+	public JButton preview22;
+	public JButton preview23;
 	public JButton preview3;
 	public JButton preview4;
 	public JButton preview5;
@@ -72,6 +75,8 @@ public class Scenario1 implements Template {
 	public JLabel text1;
 	public JLabel text2;
 	public JLabel text3;
+	public JLabel text4;
+	public JLabel text5;
 	public JLabel button1;
 	public JLabel button2;
 	public JLabel button3;
@@ -83,6 +88,8 @@ public class Scenario1 implements Template {
 	public JPanel preview1_ops;
 	public JPanel preview2_ops;
 	public JPanel preview21_ops;
+	public JPanel preview22_ops;
+	public JPanel preview23_ops;
 	public JPanel preview3_ops;
 	public JPanel preview4_ops;
 	public JPanel preview5_ops;
@@ -94,6 +101,8 @@ public class Scenario1 implements Template {
 	public JTextArea area1;
 	public JTextArea area2;
 	public JTextArea area21;
+	public JTextArea area22;
+	public JTextArea area23;
 	public JTextArea area3;
 	public JTextArea area4;
 	public JTextArea area5;
@@ -106,6 +115,8 @@ public class Scenario1 implements Template {
 	public JLabel color1;
 	public JLabel color2;
 	public JLabel color21;
+	public JLabel color22;
+	public JLabel color23;
 	public JLabel color3;
 	public JLabel color4;
 	public JLabel color5;
@@ -115,6 +126,8 @@ public class Scenario1 implements Template {
 	public JComboBox color_op1;
 	public JComboBox color_op2;
 	public JComboBox color_op21;
+	public JComboBox color_op22;
+	public JComboBox color_op23;
 	public JComboBox color_op3;
 	public JComboBox color_op4;
 	public JComboBox color_op5;
@@ -127,6 +140,8 @@ public class Scenario1 implements Template {
 	public JLabel font1;
 	public JLabel font2;
 	public JLabel font21;
+	public JLabel font22;
+	public JLabel font23;
 	public JLabel font3;
 	public JLabel font4;
 	public JLabel font5;
@@ -136,6 +151,8 @@ public class Scenario1 implements Template {
 	public JComboBox font_op1;
 	public JComboBox font_op2;
 	public JComboBox font_op21;
+	public JComboBox font_op22;
+	public JComboBox font_op23;
 	public JComboBox font_op3;
 	public JComboBox font_op4;
 	public JComboBox font_op5;
@@ -149,17 +166,14 @@ public class Scenario1 implements Template {
 	public JRadioButton correct3;
 	public JRadioButton correct4;
 	
-	ImageIcon image_edit = new ImageIcon(new ImageIcon("src/images/Scenario1.png").getImage().getScaledInstance(screenSize.width/3-10,screenSize.width/7, Image.SCALE_DEFAULT));
-	ImageIcon image_act = new ImageIcon(new ImageIcon("src/images/Scenario1.png").getImage().getScaledInstance(screenSize.width*3/4-20, (int) (screenSize.height/1.9), Image.SCALE_DEFAULT));
-	ImageIcon image_button = new ImageIcon(new ImageIcon("src/images/Scenario1.png").getImage().getScaledInstance(200,200, Image.SCALE_DEFAULT));
-	ImageIcon image_right = new ImageIcon(new ImageIcon("src/images/correct.png").getImage().getScaledInstance(screenSize.width/10, screenSize.height/5, Image.SCALE_DEFAULT));
-	ImageIcon image_wrong = new ImageIcon(new ImageIcon("src/images/wrong.png").getImage().getScaledInstance(screenSize.width/10, screenSize.height/5, Image.SCALE_DEFAULT));
-
+	ImageIcon image_edit = new ImageIcon(new ImageIcon("src/images/Scenario5.png").getImage().getScaledInstance(screenSize.width/3-10,screenSize.width/7, Image.SCALE_DEFAULT));
+	ImageIcon image_act = new ImageIcon(new ImageIcon("src/images/Scenario5.png").getImage().getScaledInstance(screenSize.width*3/4-20, (int) (screenSize.height/1.9), Image.SCALE_DEFAULT));
+	ImageIcon image_button = new ImageIcon(new ImageIcon("src/images/Scenario5.png").getImage().getScaledInstance(200,200, Image.SCALE_DEFAULT));
 	JLabel background;
 	
 	
 	
-	public Scenario1(List<String> data){
+	public Scenario5(List<String> data){
 		//System.out.println("worked");
 		CreateTemplate();
 		if (data != null) {
@@ -173,17 +187,17 @@ public class Scenario1 implements Template {
 		pane.setLayout(new FlowLayout());
 		
 		wrong_panel = new JPanel();
-		wrong_panel.setBackground(Color.white);
-		wrong_panel.setLayout(null);
+		wrong_panel.setBackground(Color.blue);
+		wrong_panel.setLayout(new FlowLayout());
 		
 		right_panel = new JPanel();
-		right_panel.setBackground(Color.white);
-		right_panel.setLayout(null);
+		right_panel.setBackground(Color.green);
+		right_panel.setLayout(new FlowLayout());
 		
 		editpane = new JPanel();
 		editpane.setBackground(Color.LIGHT_GRAY);
 		editpane.setLayout(new FlowLayout());
-		editpane.setPreferredSize(new Dimension(screenSize.width/3-20, 1000));
+		editpane.setPreferredSize(new Dimension(screenSize.width/3-20, 1300));
 		//editpane.setLocation(0, 0);
 		
 		add = new JButton("Add to Lesson");
@@ -197,6 +211,10 @@ public class Scenario1 implements Template {
 		text2.setPreferredSize(dem_labels_texts);
 		text3 = new JLabel("Text #3");
 		text3.setPreferredSize(dem_labels_texts);
+		text4 = new JLabel("Text #4");
+		text4.setPreferredSize(dem_labels_texts);
+		text5 = new JLabel("Text #5");
+		text5.setPreferredSize(dem_labels_texts);
 		button1 = new JLabel("Button #1");
 		button1.setPreferredSize(dem_labels_buttons);
 		button2 = new JLabel("Button #2");
@@ -220,6 +238,12 @@ public class Scenario1 implements Template {
 		area21 = new JTextArea();
 		area21.setPreferredSize(dem_textarea);
 		area21.setLineWrap(true);
+		area22 = new JTextArea();
+		area22.setPreferredSize(dem_textarea);
+		area22.setLineWrap(true);
+		area23 = new JTextArea();
+		area23.setPreferredSize(dem_textarea);
+		area23.setLineWrap(true);
 		area3 = new JTextArea();
 		area3.setPreferredSize(dem_textarea);
 		area3.setLineWrap(true);
@@ -250,6 +274,12 @@ public class Scenario1 implements Template {
 		preview21_ops = new JPanel();
 		preview21_ops.setPreferredSize(dem_optionpanel);
 		preview21_ops.setBackground(background_color);
+		preview22_ops = new JPanel();
+		preview22_ops.setPreferredSize(dem_optionpanel);
+		preview22_ops.setBackground(background_color);
+		preview23_ops = new JPanel();
+		preview23_ops.setPreferredSize(dem_optionpanel);
+		preview23_ops.setBackground(background_color);
 		preview3_ops = new JPanel();
 		preview3_ops.setPreferredSize(dem_optionpanel);
 		preview3_ops.setBackground(background_color);
@@ -298,6 +328,24 @@ public class Scenario1 implements Template {
 		font21.setPreferredSize(dem_colorlabel);
 		font_op21 = new JComboBox(fonts);
 		font_op21.setPreferredSize(dem_colorlabel);
+		color22 = new JLabel("Color:");
+		color22.setPreferredSize(dem_colorlabel);
+		color_op22 = new JComboBox(colors);
+		color_op22.setPreferredSize(dem_colorlabel);
+		color_op22.setSelectedItem("Black");
+		font22 = new JLabel("Font:");
+		font22.setPreferredSize(dem_colorlabel);
+		font_op22 = new JComboBox(fonts);
+		font_op22.setPreferredSize(dem_colorlabel);
+		color23 = new JLabel("Color:");
+		color23.setPreferredSize(dem_colorlabel);
+		color_op23 = new JComboBox(colors);
+		color_op23.setPreferredSize(dem_colorlabel);
+		color_op23.setSelectedItem("Black");
+		font23 = new JLabel("Font:");
+		font23.setPreferredSize(dem_colorlabel);
+		font_op23 = new JComboBox(fonts);
+		font_op23.setPreferredSize(dem_colorlabel);
 		color3 = new JLabel("Color:");
 		color3.setPreferredSize(dem_colorlabel);
 		color_op3 = new JComboBox(colors);
@@ -361,27 +409,22 @@ public class Scenario1 implements Template {
 		
 		text1_os = new JTextArea("text 1");
 		text1_os.setLineWrap(true);
-		text1_os.setEditable(false);
 		text1_os.setWrapStyleWord(true);
 		text2_os = new JTextArea("text 2");
 		text2_os.setLineWrap(true);
 		text2_os.setWrapStyleWord(true);
-		text2_os.setEditable(false);
 		text3_os = new JTextArea("text 3");
 		text3_os.setLineWrap(true);
 		text3_os.setWrapStyleWord(true);
-		text3_os.setEditable(false);
+		text4_os = new JTextArea("text 4");
+		text4_os.setLineWrap(true);
+		text4_os.setWrapStyleWord(true);
+		text5_os = new JTextArea("text 5");
+		text5_os.setLineWrap(true);
+		text5_os.setWrapStyleWord(true);
 		
 		wrong_os = new JTextArea("Wrong");
-		wrong_os.setLineWrap(true);
-		wrong_os.setWrapStyleWord(true);
-		wrong_os.setEditable(false);
 		right_os = new JTextArea("Right");
-		right_os.setLineWrap(true);
-		right_os.setWrapStyleWord(true);
-		right_os.setEditable(false);
-		right_img = new JLabel(image_right);
-		wrong_img = new JLabel(image_wrong);
 		
 		String lab = "Correct Answer";
 		Dimension dem_correct =new Dimension(dem_textarea.width/4+45, 20);
@@ -414,6 +457,12 @@ public class Scenario1 implements Template {
 		preview21 = new JButton("Preview");
 		preview21.setPreferredSize(dem_optionbutton);
 		setPreviewListener(preview21, area21, font_op21, color_op21, text3_os);
+		preview22 = new JButton("Preview");
+		preview22.setPreferredSize(dem_optionbutton);
+		setPreviewListener(preview22, area22, font_op22, color_op22, text4_os);
+		preview23 = new JButton("Preview");
+		preview23.setPreferredSize(dem_optionbutton);
+		setPreviewListener(preview23, area23, font_op23, color_op23, text5_os);
 		preview3 = new JButton("Preview");
 		preview3.setPreferredSize(dem_optionbutton);
 		setPreviewListener(preview3, area3, font_op3, color_op3, button1_os, correct1, button1);
@@ -437,10 +486,7 @@ public class Scenario1 implements Template {
 
 		//wrong and right adds
 		wrong_panel.add(wrong_os);
-		wrong_panel.add(wrong_img);
 		right_panel.add(right_os);
-		right_panel.add(right_img);
-
 		
 		//paneimg adds
 		paneimg = new JPanel();
@@ -448,6 +494,8 @@ public class Scenario1 implements Template {
 		paneimg.add(text1_os);
 		paneimg.add(text2_os);
 		paneimg.add(text3_os);
+		paneimg.add(text4_os);
+		paneimg.add(text5_os);
 		paneimg.add(background);
 		
 		//pane adds
@@ -486,6 +534,24 @@ public class Scenario1 implements Template {
 		preview21_ops.add(color_op21);
 		preview21_ops.add(font21);
 		preview21_ops.add(font_op21);
+		
+		editpane.add(text4);
+		editpane.add(area22);
+		editpane.add(preview22_ops);
+		preview22_ops.add(preview22);
+		preview22_ops.add(color22);
+		preview22_ops.add(color_op22);
+		preview22_ops.add(font22);
+		preview22_ops.add(font_op22);
+		
+		editpane.add(text5);
+		editpane.add(area23);
+		editpane.add(preview23_ops);
+		preview23_ops.add(preview23);
+		preview23_ops.add(color23);
+		preview23_ops.add(color_op23);
+		preview23_ops.add(font23);
+		preview23_ops.add(font_op23);
 		
 		editpane.add(button1);
 		editpane.add(correct1);
@@ -579,17 +645,21 @@ public class Scenario1 implements Template {
 		String[] txt1 = data.get(0).split("<end>");
 		String[] txt2 = data.get(1).split("<end>");
 		String[] txt21 = data.get(2).split("<end>");
-		String[] txt3 = data.get(3).split("<end>");
-		String[] txt4 = data.get(4).split("<end>");
-		String[] txt5 = data.get(5).split("<end>");
-		String[] txt6 = data.get(6).split("<end>");
-		String[] txt7 = data.get(7).split("<end>");
-		String[] txt8 = data.get(8).split("<end>");
-		correctAnswer = data.get(9);
+		String[] txt22 = data.get(3).split("<end>");
+		String[] txt23 = data.get(4).split("<end>");
+		String[] txt3 = data.get(5).split("<end>");
+		String[] txt4 = data.get(6).split("<end>");
+		String[] txt5 = data.get(7).split("<end>");
+		String[] txt6 = data.get(8).split("<end>");
+		String[] txt7 = data.get(9).split("<end>");
+		String[] txt8 = data.get(10).split("<end>");
+		correctAnswer = data.get(11);
 		
 		loadText(txt1, area1, font_op1, color_op1, preview1, null, false);
 		loadText(txt2, area2, font_op2, color_op2, preview2, null, false);
 		loadText(txt21, area21, font_op21, color_op21, preview21, null, false);
+		loadText(txt22, area22, font_op22, color_op22, preview22, null, false);
+		loadText(txt23, area23, font_op23, color_op23, preview23, null, false);
 		loadText(txt3, area3, font_op3, color_op3, preview3, null, false);
 		loadText(txt4, area4, font_op4, color_op4, preview4, null, false);
 		loadText(txt5, area5, font_op5, color_op5, preview5, null, false);
@@ -784,10 +854,12 @@ public class Scenario1 implements Template {
 
 	@Override
 	public String getText() {
-		String nametemplate_data = "Scenario1";
+		String nametemplate_data = "Scenario5";
 		String text1_data = "<textsub>" + text1_os.getText() + "<end>" + font_op1.getSelectedItem().toString() + "<end>" + color_op1.getSelectedItem().toString() + "<textsub>"; 
 		String text2_data = "<textsub>" + text2_os.getText() + "<end>" + font_op2.getSelectedItem().toString() + "<end>" + color_op2.getSelectedItem().toString() + "<textsub>"; 
 		String text21_data = "<textsub>" + text3_os.getText() + "<end>" + font_op21.getSelectedItem().toString() + "<end>" + color_op21.getSelectedItem().toString() + "<textsub>"; 
+		String text22_data = "<textsub>" + text4_os.getText() + "<end>" + font_op22.getSelectedItem().toString() + "<end>" + color_op22.getSelectedItem().toString() + "<textsub>"; 
+		String text23_data = "<textsub>" + text5_os.getText() + "<end>" + font_op23.getSelectedItem().toString() + "<end>" + color_op23.getSelectedItem().toString() + "<textsub>"; 
 		String text3_data = "<textsub>" + button1_os.getText() + "<end>" + font_op3.getSelectedItem().toString() + "<end>" + color_op3.getSelectedItem().toString() + "<textsub>"; 
 		String text4_data = "<textsub>" + button2_os.getText() + "<end>" + font_op4.getSelectedItem().toString() + "<end>" + color_op4.getSelectedItem().toString() + "<textsub>"; 
 		String text5_data = "<textsub>" + button3_os.getText() + "<end>" + font_op5.getSelectedItem().toString() + "<end>" + color_op5.getSelectedItem().toString() + "<textsub>"; 
@@ -796,8 +868,8 @@ public class Scenario1 implements Template {
 		String text8_data = "<textsub>" + wrong_os.getText() + "<end>" + font_op8.getSelectedItem().toString() + "<end>" + color_op8.getSelectedItem().toString() + "<textsub>"; 
 		String correctanswer_data = correctAnswer;
 		
-		String data = nametemplate_data + "\n" + "<text>" + "\n" + text1_data + "\n" + text2_data + "\n" + text21_data + "\n" + text3_data 
-					+ "\n" + text4_data + "\n" + text5_data + "\n" + text6_data + "\n" + text7_data + "\n" + text8_data + "\n" 
+		String data = nametemplate_data + "\n" + "<text>" + "\n" + text1_data + "\n" + text2_data + "\n" + text21_data + "\n" + text22_data + "\n" + text23_data
+					+ "\n" + text3_data + "\n" + text4_data + "\n" + text5_data + "\n" + text6_data + "\n" + text7_data + "\n" + text8_data + "\n" 
 					+ "<text>" + "\n"  + correctanswer_data;
 		
 		return data;
@@ -822,7 +894,7 @@ public class Scenario1 implements Template {
 
 	@Override
 	public Template getInstance() {
-		return new Scenario1(null);
+		return new Scenario5(null);
 	}
 
 	@Override
@@ -833,12 +905,16 @@ public class Scenario1 implements Template {
 			Dimension buttons = new Dimension(screenSize.width/3, screenSize.height/13);
 			background.setIcon(image_act);
 			background.setBounds(0,0,screenSize.width*3/4-20, (int) (screenSize.height/1.9));
-			text1_os.setBounds((int) (screenSize.width/2.55),screenSize.height/30,  screenSize.width/7, screenSize.height/8);
+			text1_os.setBounds((int) (screenSize.width/3.7),screenSize.height/9,  (int) (screenSize.width/8.5), screenSize.height/13);
 			text1_os.setFont(new Font(text3_os.getFont().getFontName(), Font.BOLD, 20));
-			text2_os.setBounds((int) (screenSize.width/4.6),screenSize.height/5, screenSize.width/5, screenSize.height/8);
+			text2_os.setBounds((int) (screenSize.width/8.8),(int) (screenSize.height/8.5),   (int) (screenSize.width/7.5), screenSize.height/13);
 			text2_os.setFont(new Font(text3_os.getFont().getFontName(), Font.BOLD, 20));
-			text3_os.setBounds((int) (screenSize.width/3),(int) (screenSize.height/2.6), (int) (screenSize.width/2.7), screenSize.height/6);
+			text3_os.setBounds((int) (screenSize.width/2.18),(int) (screenSize.height/10),   (int) (screenSize.width/6.5), screenSize.height/13);
 			text3_os.setFont(new Font(text3_os.getFont().getFontName(), Font.BOLD, 20));
+			text4_os.setBounds((int) (screenSize.width/4.2),(int) (screenSize.height/3.75),   (int) (screenSize.width/7.3), screenSize.height/12);
+			text4_os.setFont(new Font(text3_os.getFont().getFontName(), Font.BOLD, 20));
+			text5_os.setBounds((int) (screenSize.width/2.21),(int) (screenSize.height/2.4),   (int) (screenSize.width/5.3), screenSize.height/10);
+			text5_os.setFont(new Font(text3_os.getFont().getFontName(), Font.BOLD, 20));
 			button1_os.setPreferredSize(buttons);
 			button1_os.setFont(new Font(text3_os.getFont().getFontName(), Font.BOLD, 20));
 			button2_os.setPreferredSize(buttons);
@@ -847,31 +923,22 @@ public class Scenario1 implements Template {
 			button3_os.setFont(new Font(text3_os.getFont().getFontName(), Font.BOLD, 20));
 			button4_os.setPreferredSize(buttons);
 			button4_os.setFont(new Font(text3_os.getFont().getFontName(), Font.BOLD, 20));
-			right_os.setBounds((int) (screenSize.width/5.8),screenSize.height/4,  screenSize.width/3, screenSize.height/3);
-			right_os.setFont(new Font(text3_os.getFont().getFontName(), Font.BOLD, 20));
-			wrong_os.setBounds((int) (screenSize.width/5.8),screenSize.height/4,  screenSize.width/3, screenSize.height/3);
-			wrong_os.setFont(new Font(text3_os.getFont().getFontName(), Font.BOLD, 20));
-			right_img.setBounds((int) (screenSize.width/100),screenSize.height/4, screenSize.width/10, screenSize.height/5);
-			wrong_img.setBounds((int) (screenSize.width/100),screenSize.height/4, screenSize.width/10, screenSize.height/5);
-
 		}else {
 			paneimg.setPreferredSize(new Dimension(screenSize.width/3-10, screenSize.height/3-75));
 			Dimension buttons = new Dimension((screenSize.width/3-10)/2-3, screenSize.height/10-50);
 			background.setIcon(image_edit);
 			background.setBounds(0,0,screenSize.width/3-10,screenSize.width/7);
-			text1_os.setBounds((int) (screenSize.width/5.8),screenSize.height/60,  screenSize.width/15, screenSize.height/17);
-			text2_os.setBounds((int) (screenSize.width/11),screenSize.height/11, screenSize.width/10, screenSize.height/15);
-			text3_os.setBounds((int) (screenSize.width/7.2),(int) (screenSize.height/5.5), screenSize.width/6, screenSize.height/17);
+			text1_os.setBounds((int) (screenSize.width/8.4),screenSize.height/18,  screenSize.width/19, screenSize.height/30);
+			text2_os.setBounds((int) (screenSize.width/20),(int) (screenSize.height/17),  screenSize.width/17, screenSize.height/30);
+			text3_os.setBounds((int) (screenSize.width/4.9),(int) (screenSize.height/20), (int) (screenSize.width/14.5), screenSize.height/25);
+			text4_os.setBounds((int) (screenSize.width/9.2),(int) (screenSize.height/7.7), screenSize.width/18, screenSize.height/25);
+			text5_os.setBounds((int) (screenSize.width/5),(int) (screenSize.height/5), screenSize.width/14, screenSize.height/30);
+			
 			button1_os.setPreferredSize(buttons);
 			button2_os.setPreferredSize(buttons);
 			button3_os.setPreferredSize(buttons);
 			button4_os.setPreferredSize(buttons);
-			right_os.setBounds((int) (screenSize.width/9),screenSize.height/9,  screenSize.width/6, screenSize.height/6);
-			wrong_os.setBounds((int) (screenSize.width/9),screenSize.height/9,  screenSize.width/6, screenSize.height/6);
-			right_img.setBounds((int) (screenSize.width/100),screenSize.height/9, screenSize.width/10, screenSize.height/5);
-			wrong_img.setBounds((int) (screenSize.width/100),screenSize.height/9, screenSize.width/10, screenSize.height/5);
-
-
+			
 			right_panel.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
 					CardLayout tmp = (CardLayout)(rootPane.getLayout());
@@ -906,3 +973,6 @@ public class Scenario1 implements Template {
 	}
 
 }
+
+
+

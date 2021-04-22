@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +17,7 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
@@ -28,11 +30,14 @@ public class CreationPanel extends JPanel {
 	
 	public JPanel current_template;
 	public JScrollPane edit_template;
+	public JLabel title;
 	public JButton add;
 	public JButton currentButton;
 	
 	private EditGUI frame;
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	ImageIcon image_button = new ImageIcon(new ImageIcon("src/images/PickaTemplate.png").getImage().getScaledInstance(screenSize.width/3, 200, Image.SCALE_DEFAULT));
+
 	
 	public CreationPanel(EditGUI frame) {
 		this.frame = frame;
@@ -49,12 +54,14 @@ public class CreationPanel extends JPanel {
 
 
 	private void CreatePanel() {
+		title = new JLabel(image_button);
 		
 		//this.setPreferredSize(screenSize);
 		this.setBackground(Color.red);
 		this.setLayout(new BorderLayout(5,5));
 		this.setPreferredSize(new Dimension(screenSize.width/3, 500));
 		
+		this.add(title, BorderLayout.CENTER);
 		
 	}
 	
@@ -66,6 +73,8 @@ public class CreationPanel extends JPanel {
 			current_template = null;
 			edit_template = null;
 			currentButton.setBorder(null);
+		}else {
+			this.remove(title);
 		}
 		
 		currentButton = button;

@@ -129,7 +129,7 @@ public class PlayGUI {
 		ImageIcon imageIcon_done = new ImageIcon(new ImageIcon("src/images/Number.png").getImage().getScaledInstance(screenSize.height/9, screenSize.height/9, Image.SCALE_DEFAULT));
 		ImageIcon imageIcon_current = new ImageIcon(new ImageIcon("src/images/Number_current.png").getImage().getScaledInstance(screenSize.height/9, screenSize.height/9, Image.SCALE_DEFAULT));
 
-		for (int y= 1; y < templates.size()-1; y++) {
+		for (int y= 0; y < templates.size(); y++) {
 			Template i = templates.get(y);
 			tmp = i.getPanel();
 			i.setSizetoPlay(true);

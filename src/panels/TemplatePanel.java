@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -20,12 +21,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
 import frameGUIs.EditGUI;
 import templates.Scenario1;
+import templates.Scenario2;
 import templates.Scenario3;
+import templates.Scenario5;
 import templates.Scenario6;
 import templates.Scenario7;
 import templates.Scenario8;
@@ -37,13 +41,18 @@ public class TemplatePanel extends JPanel {
 
 	public JPanel title_panel;
 	public JPanel opt_panel;
+	public JScrollPane panelPane;
 	
 	private EditGUI frame;
 	public List<Template> templates=new ArrayList<Template>(); 
-	public List<Template> lessons=new ArrayList<Template>(); 
-	public List<Template> quizes=new ArrayList<Template>(); 
-	public List<Template> scenarios=new ArrayList<Template>(); 
-	public List<Template> misc=new ArrayList<Template>(); 
+	public List<Template> lessons=new ArrayList<Template>();
+	public List<JButton> lessons_button=new ArrayList<JButton>(); 
+	public List<Template> quizes=new ArrayList<Template>();
+	public List<JButton> quizzes_button=new ArrayList<JButton>(); 
+	public List<Template> scenarios=new ArrayList<Template>();
+	public List<JButton> scenarios_button=new ArrayList<JButton>(); 
+	public List<Template> misc=new ArrayList<Template>();
+	public List<JButton> misc_button=new ArrayList<JButton>(); 
 	public List<JButton> options=new ArrayList<JButton>(); 
 	
 	public JLabel template_l;
@@ -74,6 +83,8 @@ public class TemplatePanel extends JPanel {
 		
 		title_panel = new JPanel(new BorderLayout());
 		opt_panel = new JPanel(new FlowLayout(10));
+		opt_panel.setPreferredSize(new Dimension(0, 55*4));
+
 		
 		template_l = new JLabel("Templates", SwingConstants.CENTER);
 		template_l.setFont(new Font("TimesRoman", Font.BOLD, 40));
@@ -91,8 +102,16 @@ public class TemplatePanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if (lessons_l.getIcon() == up) {
 					lessons_l.setIcon(down);
+					for (JButton tmp: lessons_button) {
+						opt_panel.setPreferredSize(new Dimension(0, opt_panel.getSize().height + 420));
+						tmp.setVisible(true);
+					}
 				}else {
 					lessons_l.setIcon(up);
+					for (JButton tmp: lessons_button) {
+						opt_panel.setPreferredSize(new Dimension(0, opt_panel.getSize().height - 420));
+						tmp.setVisible(false);
+					}
 				}
 			}
 			
@@ -117,8 +136,16 @@ public class TemplatePanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if (scenarios_l.getIcon() == up) {
 					scenarios_l.setIcon(down);
+					for (JButton tmp: scenarios_button) {
+						opt_panel.setPreferredSize(new Dimension(0,opt_panel.getSize().height + 420));
+						tmp.setVisible(true);
+					}
 				}else {
 					scenarios_l.setIcon(up);
+					for (JButton tmp: scenarios_button) {
+						opt_panel.setPreferredSize(new Dimension(0, opt_panel.getSize().height - 420));
+						tmp.setVisible(false);
+					}
 				}
 			}
 			
@@ -143,7 +170,15 @@ public class TemplatePanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if (quizes_l.getIcon() == up) {
 					quizes_l.setIcon(down);
+					for (JButton tmp: quizzes_button) {
+						opt_panel.setPreferredSize(new Dimension(0,opt_panel.getSize().height + 420));
+						tmp.setVisible(true);
+					}
 				}else {
+					for (JButton tmp: quizzes_button) {
+						opt_panel.setPreferredSize(new Dimension(0,opt_panel.getSize().height - 420));
+						tmp.setVisible(false);
+					}
 					quizes_l.setIcon(up);
 				}
 			}
@@ -169,8 +204,16 @@ public class TemplatePanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if (misc_l.getIcon() == up) {
 					misc_l.setIcon(down);
+					for (JButton tmp: misc_button) {
+						opt_panel.setPreferredSize(new Dimension(0,opt_panel.getSize().height + 420));
+						tmp.setVisible(true);
+					}
 				}else {
 					misc_l.setIcon(up);
+					for (JButton tmp: misc_button) {
+						opt_panel.setPreferredSize(new Dimension(0,opt_panel.getSize().height - 420));
+						tmp.setVisible(false);
+					}
 				}
 			}
 			
@@ -185,7 +228,23 @@ public class TemplatePanel extends JPanel {
 
 		});
 		
-		for (Template i: templates) {
+		ImageIcon image_button = new ImageIcon(new ImageIcon("src/images/WIP.png").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+
+		opt_panel.add(lessons_l);
+		for (int i = 0; i < 8; i++) {
+			JButton option = new JButton();
+			option.setHorizontalTextPosition(JButton.CENTER);
+			option.setVerticalTextPosition(JButton.CENTER);
+			option.setIcon(image_button);
+			option.setMargin(new Insets(0,0,0,0));
+			option.setPreferredSize(new Dimension(200,200));
+			option.setVisible(false);
+			lessons_button.add(option);
+			opt_panel.add(option);
+			
+		}
+		opt_panel.add(scenarios_l);
+		for (Template i: scenarios) {
 			JButton option = new JButton();
 			option.setIcon(i.getImage());
 			option.setHorizontalTextPosition(JButton.CENTER);
@@ -205,28 +264,86 @@ public class TemplatePanel extends JPanel {
 				}
 				
 			});
-			
+			option.setVisible(false);
 			options.add(option);
+			scenarios_button.add(option);
 			opt_panel.add(option);
 		}
-		//this.setPreferredSize(new Dimension(0, 0));
-		this.add(template_l, BorderLayout.NORTH);
-		this.add(opt_panel, BorderLayout.CENTER);
 		
-		opt_panel.add(lessons_l);
-		opt_panel.add(scenarios_l);
 		opt_panel.add(quizes_l);
+		for (int i = 0; i < 8; i++) {
+			JButton option = new JButton();
+			option.setHorizontalTextPosition(JButton.CENTER);
+			option.setVerticalTextPosition(JButton.CENTER);
+			option.setIcon(image_button);
+			option.setMargin(new Insets(0,0,0,0));
+			option.setPreferredSize(new Dimension(200,200));
+			option.setVisible(false);
+			quizzes_button.add(option);
+			opt_panel.add(option);
+			
+		}
 		opt_panel.add(misc_l);
+		for (int i = 0; i < 8; i++) {
+			JButton option = new JButton();
+			option.setHorizontalTextPosition(JButton.CENTER);
+			option.setVerticalTextPosition(JButton.CENTER);
+			option.setIcon(image_button);
+			option.setMargin(new Insets(0,0,0,0));
+			option.setPreferredSize(new Dimension(200,200));
+			option.setVisible(false);
+			misc_button.add(option);
+			opt_panel.add(option);
+			
+		}
+		//this.setPreferredSize(new Dimension(0, 0));
+		
+		panelPane = new JScrollPane(opt_panel);
+		panelPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		panelPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		panelPane.setPreferredSize(new Dimension(0,screenSize.height));
+		
+		this.add(template_l, BorderLayout.NORTH);
+		this.add(panelPane, BorderLayout.CENTER);
+		
+		
+		
+		
 	}
 	
 	private void initializeTemplates() {
 		//templates.add(new Test(null));
-		templates.add(new Scenario1(null));
-		templates.add(new Scenario3(null));
-		templates.add(new Scenario6(null));
-		templates.add(new Scenario7(null));
-		templates.add(new Scenario8(null));
-		templates.add(new Scenario9(null));
+		Template tmp = new Scenario1(null);
+		templates.add(tmp);
+		scenarios.add(tmp);
+		
+		 tmp = new Scenario2(null);
+		templates.add(tmp);
+		scenarios.add(tmp);
+		
+		 tmp = new Scenario3(null);
+		templates.add(tmp);
+		scenarios.add(tmp);
+		
+		 tmp = new Scenario5(null);
+		templates.add(tmp);
+		scenarios.add(tmp);
+		
+		 tmp = new Scenario6(null);
+		templates.add(tmp);
+		scenarios.add(tmp);
+		
+		 tmp = new Scenario7(null);
+		templates.add(tmp);
+		scenarios.add(tmp);
+		
+		 tmp = new Scenario8(null);
+		templates.add(tmp);
+		scenarios.add(tmp);
+		
+		 tmp = new Scenario9(null);
+		templates.add(tmp);
+		scenarios.add(tmp);
 	}
 	
 	
