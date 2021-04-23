@@ -83,7 +83,7 @@ public class StartingTemplate extends JPanel implements Template {
 			
 		}else {
 			background.setIcon(image_edit);
-			title.setBounds((int) (screenSize.width/8.5),(int) (screenSize.height/7), screenSize.width/3, screenSize.height/20);
+			title.setBounds((int) (screenSize.width/8.5),(int) (screenSize.height/6), screenSize.width/3, screenSize.height/20);
 			title.setFont(new Font(title.getFont().getFontName(), Font.BOLD, 40));
 		}
 		

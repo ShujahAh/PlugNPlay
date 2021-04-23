@@ -47,6 +47,8 @@ public class Scenario3 implements Template {
 	public JTextArea text3_os;
 	public JTextArea wrong_os;
 	public JTextArea right_os;
+	public JLabel wrong_img;
+	public JLabel right_img;
 	
 	//buttons that will appear on the preview
 	public JButton button1_os;
@@ -150,6 +152,8 @@ public class Scenario3 implements Template {
 	ImageIcon image_edit = new ImageIcon(new ImageIcon("src/images/Scenario3.png").getImage().getScaledInstance(screenSize.width/3-10,screenSize.width/7, Image.SCALE_DEFAULT));
 	ImageIcon image_act = new ImageIcon(new ImageIcon("src/images/Scenario3.png").getImage().getScaledInstance(screenSize.width*3/4-20, (int) (screenSize.height/1.9), Image.SCALE_DEFAULT));
 	ImageIcon image_button = new ImageIcon(new ImageIcon("src/images/Scenario3.png").getImage().getScaledInstance(200,200, Image.SCALE_DEFAULT));
+	ImageIcon image_right = new ImageIcon(new ImageIcon("src/images/correct.png").getImage().getScaledInstance(screenSize.width/10, screenSize.height/5, Image.SCALE_DEFAULT));
+	ImageIcon image_wrong = new ImageIcon(new ImageIcon("src/images/wrong.png").getImage().getScaledInstance(screenSize.width/10, screenSize.height/5, Image.SCALE_DEFAULT));
 	JLabel background;
 	
 	
@@ -168,12 +172,12 @@ public class Scenario3 implements Template {
 		pane.setLayout(new FlowLayout());
 		
 		wrong_panel = new JPanel();
-		wrong_panel.setBackground(Color.blue);
-		wrong_panel.setLayout(new FlowLayout());
+		wrong_panel.setBackground(Color.white);
+		wrong_panel.setLayout(null);
 		
 		right_panel = new JPanel();
-		right_panel.setBackground(Color.green);
-		right_panel.setLayout(new FlowLayout());
+		right_panel.setBackground(Color.white);
+		right_panel.setLayout(null);
 		
 		editpane = new JPanel();
 		editpane.setBackground(Color.LIGHT_GRAY);
@@ -356,16 +360,27 @@ public class Scenario3 implements Template {
 		
 		text1_os = new JTextArea("text 1");
 		text1_os.setLineWrap(true);
+		text1_os.setEditable(false);
 		text1_os.setWrapStyleWord(true);
 		text2_os = new JTextArea("text 2");
 		text2_os.setLineWrap(true);
 		text2_os.setWrapStyleWord(true);
+		text2_os.setEditable(false);
 		text3_os = new JTextArea("text 3");
 		text3_os.setLineWrap(true);
 		text3_os.setWrapStyleWord(true);
+		text3_os.setEditable(false);
 		
 		wrong_os = new JTextArea("Wrong");
+		wrong_os.setLineWrap(true);
+		wrong_os.setWrapStyleWord(true);
+		wrong_os.setEditable(false);
 		right_os = new JTextArea("Right");
+		right_os.setLineWrap(true);
+		right_os.setWrapStyleWord(true);
+		right_os.setEditable(false);
+		right_img = new JLabel(image_right);
+		wrong_img = new JLabel(image_wrong);
 		
 		String lab = "Correct Answer";
 		Dimension dem_correct =new Dimension(dem_textarea.width/4+45, 20);
@@ -421,7 +436,9 @@ public class Scenario3 implements Template {
 
 		//wrong and right adds
 		wrong_panel.add(wrong_os);
+		wrong_panel.add(wrong_img);
 		right_panel.add(right_os);
+		right_panel.add(right_img);
 		
 		//paneimg adds
 		paneimg = new JPanel();
@@ -828,6 +845,12 @@ public class Scenario3 implements Template {
 			button3_os.setFont(new Font(text3_os.getFont().getFontName(), Font.BOLD, 20));
 			button4_os.setPreferredSize(buttons);
 			button4_os.setFont(new Font(text3_os.getFont().getFontName(), Font.BOLD, 20));
+			right_os.setBounds((int) (screenSize.width/5.8),screenSize.height/4,  screenSize.width/3, screenSize.height/3);
+			right_os.setFont(new Font(text3_os.getFont().getFontName(), Font.BOLD, 20));
+			wrong_os.setBounds((int) (screenSize.width/5.8),screenSize.height/4,  screenSize.width/3, screenSize.height/3);
+			wrong_os.setFont(new Font(text3_os.getFont().getFontName(), Font.BOLD, 20));
+			right_img.setBounds((int) (screenSize.width/100),screenSize.height/4, screenSize.width/10, screenSize.height/5);
+			wrong_img.setBounds((int) (screenSize.width/100),screenSize.height/4, screenSize.width/10, screenSize.height/5);
 		}else {
 			paneimg.setPreferredSize(new Dimension(screenSize.width/3-10, screenSize.height/3-75));
 			Dimension buttons = new Dimension((screenSize.width/3-10)/2-3, screenSize.height/10-50);
@@ -840,6 +863,10 @@ public class Scenario3 implements Template {
 			button2_os.setPreferredSize(buttons);
 			button3_os.setPreferredSize(buttons);
 			button4_os.setPreferredSize(buttons);
+			right_os.setBounds((int) (screenSize.width/9),screenSize.height/9,  screenSize.width/6, screenSize.height/6);
+			wrong_os.setBounds((int) (screenSize.width/9),screenSize.height/9,  screenSize.width/6, screenSize.height/6);
+			right_img.setBounds((int) (screenSize.width/100),screenSize.height/9, screenSize.width/10, screenSize.height/5);
+			wrong_img.setBounds((int) (screenSize.width/100),screenSize.height/9, screenSize.width/10, screenSize.height/5);
 			
 			right_panel.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
