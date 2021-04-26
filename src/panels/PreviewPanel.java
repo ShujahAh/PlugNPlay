@@ -92,6 +92,7 @@ public class PreviewPanel extends JPanel {
 		delete = new JButton("Delete");
 		change = new JButton("Change Position");
 		change_pos = new JLabel("Position:");
+		change_pos.setForeground(Color.RED);
 		change_op = new JComboBox();
 		
 		
