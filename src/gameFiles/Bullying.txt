@@ -1,0 +1,49 @@
+Bullying
+<section>
+<template>
+Scenario1
+<text>
+<textsub>Hey dork, your hat is dumb<end>Dialog<end>Black<textsub>
+<textsub>No, your head is dumber<end>Dialog<end>Black<textsub>
+<textsub>Are these people displaying appropriate behavior?
+<end>Dialog<end>Black<textsub>
+<textsub>yes, it is normal to throw insults to someone you dont know<end>Dialog<end>Black<textsub>
+<textsub>no, this is rude behavior<end>Dialog<end>Black<textsub>
+<textsub>yes, the Mr. Blue's hat is dumb<end>Dialog<end>Black<textsub>
+<textsub>no, Mr. Red should have been harsh<end>Dialog<end>Black<textsub>
+<textsub>Correct, yelling rude statments at people is not a healthy behavior one should have<end>Dialog<end>Black<textsub>
+<textsub>Read the conversation again<end>Dialog<end>Black<textsub>
+<text>
+Button #2
+<template>
+Scenario2
+<text>
+<textsub>What is wrong with the cycle?<end>Dialog<end>Black<textsub>
+<textsub>Mr. Red says something mean to Mr.Blue<end>Dialog<end>Black<textsub>
+<textsub>Mr. Red gets mad<end>Dialog<end>Black<textsub>
+<textsub>Mr. Blue gets mad<end>Dialog<end>Black<textsub>
+<textsub>Mr. Blue says something mean to Mr. Red<end>Dialog<end>Black<textsub>
+<textsub>It is a cycle of hate<end>Dialog<end>Black<textsub>
+<textsub>Mr. Blue shouldnt get mad<end>Dialog<end>Black<textsub>
+<textsub>option 3<end>Dialog<end>Black<textsub>
+<textsub>One of them should be more meaner<end>Dialog<end>Black<textsub>
+<textsub>correct, it is no use if they both keep getting mad and say meaner stuff, there will no good end to this<end>Dialog<end>Black<textsub>
+<textsub>read the cycle again<end>Dialog<end>Black<textsub>
+<text>
+Button #1
+<template>
+Scenario6
+<text>
+<textsub>Mr.Red was too mean<end>Helvetica<end>Orange<textsub>
+<textsub>Mr.Blue was too mean<end>TimesR<end>Green<textsub>
+<textsub>Which one is right<end>Dialog<end>Gray<textsub>
+<textsub>neither of them<end>Dialog<end>Red<textsub>
+<textsub>left side<end>Dialog<end>Orange<textsub>
+<textsub>right side<end>Dialog<end>Blue<textsub>
+<textsub>both of them<end>Dialog<end>Black<textsub>
+<textsub>correct, while one did instigate it, both of them went too far<end>Dialog<end>Black<textsub>
+<textsub>look at the argument again<end>Dialog<end>Black<textsub>
+<text>
+Button #4
+<section>
+finished
